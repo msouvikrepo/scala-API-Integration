@@ -1,6 +1,7 @@
 package com.mailytica.ai.api.dhl
 
-import spray.json.JsString
+import spray.json._
+
 
 case class DhlStatus(
                     statusCode: StatusCode,
@@ -19,8 +20,10 @@ object DhlStatus {
 
   def parseJson(jsonString: String): DhlStatus = {
 
-    // spray
 
+    // spray
+    val jsonValue = jsonString.parseJson
+    print(jsonValue.asJsObject.getFields())
 
     // create dhl status from the attributes from the json string
 
