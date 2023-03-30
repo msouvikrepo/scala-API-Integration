@@ -22,15 +22,31 @@ object DhlStatus {
 
 
     // spray
-    val jsonValue = jsonString.parseJson
-    print(jsonValue.asJsObject.getFields())
+    val jsonValue: JsValue = jsonString.parseJson
+    val JsArray(shipmentsJson) = jsonValue.asJsObject.fields("shipments")
+
+    val shipment = shipmentsJson.head
+
+    val shipmentOption: Option[JsValue] = shipmentsJson.headOption // Some(shipment), None
+    // TODO learn read a bit about Scala option and .map function of options
+
+    val JsObject(statusObject) = shipment.asJsObject.fields("status")
+
+    val JsString(statusCode) = statusObject("statusCode")
+    val JsString(status) = statusObject("status")
+    val JsString(description) = statusObject("description")
+
+
+    println(statusCode)
+    println(status)
+    println(description)
 
     // create dhl status from the attributes from the json string
 
     DhlStatus(
-      StatusCode(404),
-      Description("Entity not found"),
-      Status("Not Found")
+      StatusCode(statusCode),
+      Description(description),
+      Status(status)
     )
   }
 }
