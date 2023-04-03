@@ -1,15 +1,15 @@
 package com.mailytica.ai.api.dhl
 
-import spray.json.JsString
+import spray.json._
+
 
 case class DhlStatus(
-                    statusCode: StatusCode,
-                    description: Description,
-                    status: Status
+                      statusCode: StatusCode,
+                      description: Description,
+                      status: Status
                     ) {
 
   def doingSomething(value: Int): String = {
-
     "produced a string"
   }
 }
@@ -19,15 +19,34 @@ object DhlStatus {
 
   def parseJson(jsonString: String): DhlStatus = {
 
-    // spray
 
+    // spray
+    val jsonValue: JsValue = jsonString.parseJson
+    val JsArray(shipmentsJson) = jsonValue.asJsObject.fields("shipments")
+
+    val shipment = shipmentsJson.head
+
+    val shipmentOption: Option[JsValue] = shipmentsJson.headOption // Some(shipment), None
+    // TODO learn read a bit about Scala option and .map function of options
+
+
+    val JsObject(statusObject) = shipment.asJsObject.fields("status")
+
+    val JsString(statusCode) = statusObject("statusCode")
+    val JsString(status) = statusObject("status")
+    val JsString(description) = statusObject("description")
+
+
+    println(statusCode)
+    println(status)
+    println(description)
 
     // create dhl status from the attributes from the json string
 
     DhlStatus(
-      StatusCode(404),
-      Description("Entity not found"),
-      Status("Not Found")
+      StatusCode(statusCode),
+      Description(description),
+      Status(status)
     )
   }
 }
