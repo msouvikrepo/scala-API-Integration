@@ -9,33 +9,25 @@ import spray.json.{JsValue, JsonParser}
 import spray.json._
 
 @RunWith(classOf[JUnitRunner])
-class DhlStatusSpec extends  FlatSpec with Matchers{
+class DhlStatusSpec extends  FlatSpec with Matchers {
 
   //val actualDhlStatus = DhlStatus.parseJson(jsonString)
 
 
-  it should "convert a json of DhlStatus" in {
+  "A DHL JSON response" should "have the correct structure" in {
 
-
+    val dhlJsonResponse: String = DhlStatusSpec.defaultJsonFixture()
+    val expectedJsonStructure: JsObject = JsObject(
+      "shipments" -> JsArray(),
+      "possibleAdditionalShipmentsUrl" -> JsArray()
+    )
 
   }
 
-
-
-
-
-  /*it should "convert a json of ImportSentEmailsCommandJsonFormat" in {
-
-    val (jsonInput, expectedImportEmailsCommand) = AccountImportEmailsJobCommandJsonFormatSpec.defaultJsonFixture
-
-    val actualImportEmailsCommand = accountImportEmailsJobCommandJsonFormat.read(jsonInput)
-
-    expectedImportEmailsCommand shouldEqual actualImportEmailsCommand*/
-  }
-
+}
 object DhlStatusSpec {
 
-  def defaultJsonFixture(): (JsValue) = {
+  def defaultJsonFixture(): (String) = {
 
     // @formatter:off
     val jsonString: String =
@@ -218,6 +210,6 @@ object DhlStatusSpec {
         |""".stripMargin
     // @formatter:on
 
-    (jsonString.parseJson)
+    (jsonString)
   }
 }
