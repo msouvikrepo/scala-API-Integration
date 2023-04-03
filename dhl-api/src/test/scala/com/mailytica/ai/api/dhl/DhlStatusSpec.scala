@@ -4,33 +4,37 @@ import com.mailytica.ai.api.dhl
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest._
-
 import spray.json.{JsValue, JsonParser}
 import spray.json._
 
 @RunWith(classOf[JUnitRunner])
 class DhlStatusSpec extends  FlatSpec with Matchers {
 
-  //val actualDhlStatus = DhlStatus.parseJson(jsonString)
 
 
-  "A DHL JSON response" should "have the correct structure" in {
+  it should "convert a json of a dhl response into DhlStatus" in {
 
-    val dhlJsonResponse: String = DhlStatusSpec.defaultJsonFixture()
-    val expectedJsonStructure: JsObject = JsObject(
-      "shipments" -> JsArray(),
-      "possibleAdditionalShipmentsUrl" -> JsArray()
-    )
+    val (jsonInput, expectedDhlStatus) = DhlStatusSpec.defaultJsonFixture
+    val actualDhlStatus = DhlStatus.parseJson(jsonInput.toString())
+    expectedDhlStatus shouldEqual actualDhlStatus
 
   }
 
 }
 object DhlStatusSpec {
 
-  def defaultJsonFixture(): (String) = {
+  def defaultJsonFixture(): (JsValue, DhlStatus) = {
 
+
+
+
+    val importDhlStatus: DhlStatus = DhlStatus(
+      statusCode = ???,
+      description = ???,
+      status = ???
+    )
     // @formatter:off
-    val jsonString: String =
+    val jsonString =JsonParser(
       """
         |{
         |  "shipments": [
@@ -208,8 +212,8 @@ object DhlStatusSpec {
         |  ]
         |}
         |""".stripMargin
+    )
     // @formatter:on
-
-    (jsonString)
+    (jsonString, importDhlStatus)
   }
 }

@@ -27,6 +27,7 @@ temp*
 dist
 test-output
 build.log
+test.scala
 
 # other scm
 .svn
