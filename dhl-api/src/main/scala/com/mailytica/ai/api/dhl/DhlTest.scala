@@ -186,6 +186,10 @@ object DhlTest extends App {
 
   val DhlStatus(code, description, status) = DhlStatus.parseJson(this.jsonString)
 
+
+ // this.dhlStatus.doingSomething(2)
+
+
   // this.dhlStatus.doingSomething(2)
 
 }

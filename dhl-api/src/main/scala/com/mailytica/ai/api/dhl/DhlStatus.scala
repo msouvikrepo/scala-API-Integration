@@ -29,7 +29,6 @@ object DhlStatus {
     val shipmentOption: Option[JsValue] = shipmentsJson.headOption // Some(shipment), None
     // TODO learn read a bit about Scala option and .map function of options
 
-
     val JsObject(statusObject) = shipment.asJsObject.fields("status")
 
     val JsString(statusCode) = statusObject("statusCode")
