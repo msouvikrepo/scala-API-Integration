@@ -3,12 +3,12 @@ package com.mailytica.ai.api.dhl
 import com.mailytica.ai.api.dhl
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-//import org.scalatest.flatspec.
+import org.scalatest._
 
 import spray.json.{JsValue, JsonParser}
 
 @RunWith(classOf[JUnitRunner])
-class DhlStatusSpec extends DefaultFlatSpec {
+class DhlStatusSpec extends  FlatSpec with Matchers{
 
   val jsonString: String =
     """
@@ -191,7 +191,10 @@ class DhlStatusSpec extends DefaultFlatSpec {
   val actualDhlStatus = DhlStatus.parseJson(jsonString)
 
 
+  it should "convert a json of Dhl"
   //checking
+
+
 
   /*it should "convert a json of ImportSentEmailsCommandJsonFormat" in {
 
