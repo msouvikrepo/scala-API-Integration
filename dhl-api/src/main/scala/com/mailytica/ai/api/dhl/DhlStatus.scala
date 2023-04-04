@@ -29,6 +29,8 @@ object DhlStatus {
     val shipment = shipmentsJson.head
     // TODO learn read a bit about Scala option and .map function of options
 
+    //shipmentsJson.map {shipment =>
+
     val JsObject(statusObject) = shipment.asJsObject.fields("status")
 
     val JsString(statusCode) = statusObject("statusCode")
@@ -42,10 +44,10 @@ object DhlStatus {
 
     // create dhl status from the attributes from the json string
 
-    Option[DhlStatus(
+    DhlStatus(
       StatusCode(statusCode),
       Description(description),
       Status(status)
-    )]
+    )
   }
 }
