@@ -36,7 +36,10 @@ object DhlStatusSpec {
                               DhlStatus(
                               statusCode = StatusCode("delivered"),
                               description = Description("Die Sendung wurde zugestellt."),
-                              status = Status("Die Sendung wurde zugestellt.")
+                              status = Status("Die Sendung wurde zugestellt."),
+                              trackingCode = TrackingCode("470800204932"),
+                              statusTimestamp = StatusTimestamp(java.time.LocalDateTime.parse("2023-03-13T09:50:00")),
+                              serviceUrl = ServiceUrl("https://www.dhl.de/de/privatkunden.html?piececode=470800204932&cid=c_dhl_de_352_20205002_151_M040")
                             )
                           )
                         ): (JsValue, Option[DhlStatus]) = {

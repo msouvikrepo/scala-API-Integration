@@ -6,7 +6,10 @@ import spray.json._
 case class DhlStatus(
                       statusCode: StatusCode,
                       description: Description,
-                      status: Status
+                      status: Status,
+                      trackingCode: TrackingCode,
+                      statusTimestamp: StatusTimestamp,
+                      serviceUrl: ServiceUrl
                     ) {
 
   def doingSomething(value: Int): String = {
@@ -44,7 +47,10 @@ object DhlStatus {
     DhlStatus(
       StatusCode(statusCode),
       Description(description),
-      Status(status)
+      Status(status),
+      TrackingCode(""),
+      StatusTimestamp(java.time.LocalDateTime.now()),
+      ServiceUrl("")
     )
   }
 }
