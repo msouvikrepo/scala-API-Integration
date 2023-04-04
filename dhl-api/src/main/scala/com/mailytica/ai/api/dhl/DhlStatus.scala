@@ -26,7 +26,7 @@ object DhlStatus {
 
     val shipmentOption: Option[JsValue] = shipmentsJson.headOption // Some(shipment), None
 
-    val shipment = shipmentsJson.head
+   // val shipment = shipmentsJson.head
     // TODO learn read a bit about Scala option and .map function of options
 
     shipmentOption.map {shipment =>
@@ -36,7 +36,6 @@ object DhlStatus {
     val JsString(statusCode) = statusObject("statusCode")
     val JsString(status) = statusObject("status")
     val JsString(description) = statusObject("description")
-
     println(statusCode)
     println(status)
     println(description)
