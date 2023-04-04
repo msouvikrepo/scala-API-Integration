@@ -35,7 +35,10 @@ object DhlStatus {
     shipmentOption.map {shipment =>
 
     val JsObject(statusObject) = shipment.asJsObject.fields("status")
+    val JsString(trackingCode) = shipment.asJsObject.fields("id")
+    val JsString(serviceUrl) = shipment.asJsObject.fields("serviceUrl")
 
+    val JsString(statusTimestamp) = statusObject("timestamp")
     val JsString(statusCode) = statusObject("statusCode")
     val JsString(status) = statusObject("status")
     val JsString(description) = statusObject("description")
@@ -48,9 +51,9 @@ object DhlStatus {
       StatusCode(statusCode),
       Description(description),
       Status(status),
-      TrackingCode(""),
-      StatusTimestamp(java.time.LocalDateTime.now()),
-      ServiceUrl("")
+      TrackingCode(trackingCode),
+      StatusTimestamp(java.time.LocalDateTime.parse(statusTimestamp)),
+      ServiceUrl(serviceUrl)
     )
   }
 }
