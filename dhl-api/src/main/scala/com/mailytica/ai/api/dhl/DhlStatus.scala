@@ -24,9 +24,9 @@ object DhlStatus {
     val jsonValue: JsValue = jsonString.parseJson
     val JsArray(shipmentsJson) = jsonValue.asJsObject.fields("shipments")
 
-    val shipment = shipmentsJson.head
-
     val shipmentOption: Option[JsValue] = shipmentsJson.headOption // Some(shipment), None
+
+    val shipment = shipmentsJson.head
     // TODO learn read a bit about Scala option and .map function of options
 
     val JsObject(statusObject) = shipment.asJsObject.fields("status")
