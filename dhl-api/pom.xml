@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.mailytica.ai</groupId>
         <artifactId>mailytica-api</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>dhl-api</artifactId>
