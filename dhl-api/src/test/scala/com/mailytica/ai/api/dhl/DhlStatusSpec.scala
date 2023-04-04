@@ -10,32 +10,38 @@ import spray.json._
 @RunWith(classOf[JUnitRunner])
 class DhlStatusSpec extends  FlatSpec with Matchers {
 
-
-
   it should "convert a json of a dhl response into DhlStatus" in {
 
-    val (jsonInput, expectedDhlStatus) = DhlStatusSpec.defaultJsonFixture
-    val actualDhlStatus = DhlStatus.parseJson(jsonInput.toString())
-    expectedDhlStatus shouldEqual actualDhlStatus
+    val (jsonInput, expectedDhlStatus) = DhlStatusSpec.defaultJsonFixture()
 
+    val actualDhlStatus: DhlStatus = DhlStatus.parseJson(jsonInput.toString())
+
+    expectedDhlStatus shouldEqual actualDhlStatus
   }
 
+  ignore should "convert a json of an empty dhl response and return a none" in {
+
+    val (jsonInput, expectedDhlStatus) = DhlStatusSpec.defaultJsonFixture()
+
+    val actualDhlStatus: DhlStatus = DhlStatus.parseJson(jsonInput.toString())
+
+    expectedDhlStatus shouldEqual actualDhlStatus
+  }
 }
+
 object DhlStatusSpec {
 
-  def defaultJsonFixture(): (JsValue, DhlStatus) = {
+  def defaultJsonFixture(
+                          importDhlStatus: DhlStatus = DhlStatus(
+                            statusCode = StatusCode("delivered"),
+                            description = Description("Die Sendung wurde zugestellt."),
+                            status = Status("Die Sendung wurde zugestellt.")
+                          )
+                        ): (JsValue, DhlStatus) = {
 
-
-
-
-    val importDhlStatus: DhlStatus = DhlStatus(
-      statusCode = ???,
-      description = ???,
-      status = ???
-    )
     // @formatter:off
     val jsonString =JsonParser(
-      """
+      s"""
         |{
         |  "shipments": [
         |    {
@@ -59,9 +65,9 @@ object DhlStatusSpec {
         |            "addressLocality": "Deutschland"
         |          }
         |        },
-        |        "statusCode": "delivered",
-        |        "status": "Die Sendung wurde zugestellt.",
-        |        "description": "Die Sendung wurde zugestellt."
+        |        "statusCode": "${importDhlStatus.statusCode.value}",
+        |        "status": "${importDhlStatus.status.value}",
+        |        "description": "${importDhlStatus.status.value}"
         |      },
         |      "details": {
         |        "product": {
