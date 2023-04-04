@@ -1,11 +1,9 @@
 package com.mailytica.ai.api.dhl
 
-import com.mailytica.ai.api.dhl
 import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
 import org.scalatest._
+import org.scalatest.junit.JUnitRunner
 import spray.json.{JsValue, JsonParser}
-import spray.json._
 
 @RunWith(classOf[JUnitRunner])
 class DhlStatusSpec extends  FlatSpec with Matchers with OptionValues {
