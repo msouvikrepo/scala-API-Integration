@@ -29,7 +29,7 @@ object DhlStatus {
     val shipment = shipmentsJson.head
     // TODO learn read a bit about Scala option and .map function of options
 
-    //shipmentsJson.map {shipment =>
+    shipmentsJson.map {shipment =>
 
     val JsObject(statusObject) = shipment.asJsObject.fields("status")
 
@@ -50,4 +50,4 @@ object DhlStatus {
       Status(status)
     )
   }
-}
+}}
