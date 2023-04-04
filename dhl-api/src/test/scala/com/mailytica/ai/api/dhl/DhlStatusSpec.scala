@@ -14,7 +14,7 @@ class DhlStatusSpec extends  FlatSpec with Matchers with OptionValues {
 
     val (jsonInput, expectedDhlStatus) = DhlStatusSpec.defaultJsonFixture()
 
-    val actualDhlStatus: DhlStatus = DhlStatus.parseJson(jsonInput.toString())
+    val actualDhlStatus: DhlStatus = DhlStatus.parseJson(jsonInput.toString()).get
 
     expectedDhlStatus shouldEqual Some(actualDhlStatus)
   }
@@ -23,7 +23,7 @@ class DhlStatusSpec extends  FlatSpec with Matchers with OptionValues {
 
     val (jsonInput, _) = DhlStatusSpec.defaultJsonFixture(None)
 
-    val actualDhlStatus: DhlStatus = DhlStatus.parseJson(jsonInput.toString())
+    val actualDhlStatus: DhlStatus = DhlStatus.parseJson(jsonInput.toString()).get
 
     actualDhlStatus shouldEqual None
   }

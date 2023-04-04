@@ -184,7 +184,7 @@ object DhlTest extends App {
       |""".stripMargin
 
 
-  val DhlStatus(code, description, status) = DhlStatus.parseJson(this.jsonString)
+  val DhlStatus(code, description, status) = DhlStatus.parseJson(this.jsonString).getOrElse("Not a valid JSon")
 
  // this.dhlStatus.doingSomething(2)
 
