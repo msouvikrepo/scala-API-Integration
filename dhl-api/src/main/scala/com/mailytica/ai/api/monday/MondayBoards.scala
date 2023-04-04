@@ -12,13 +12,16 @@ object MondayBoards{
 
   def parseJson(jsonString: String): Option[MondayBoards] = {
 
-  val jsonValue: JsValue = jsonString.parseJson
-  implicit val nameIdFormat = jsonFormat2(Board)
+  // Return None if the JSON string is empty
+  if (jsonString.trim.isEmpty) return None
 
-  val keyValueSeq = jsonValue match {
-    case JsArray(elements) => elements.map(_.convertTo[Board])
-    case _ => Seq.empty[Board]
-  }
-  println(keyValueSeq)
+    val json = jsonString.parseJson
+    val boards = json.asJsObject.fields("data").asJsObject.fields("boards").convertTo[Seq[JsObject]]
+    val boardSeq = boards.map(board => Board(
+      BoardName(board.fields("name").convertTo[String]),
+      BoardId(board.fields("id").convertTo[String])
+    ))
+
+  Some(MondayBoards(boardSeq))
   }
 }
