@@ -67,7 +67,7 @@ object DhlStatusSpec {
          |        },
          |        "statusCode": "${dhlStatus.statusCode.value}",
          |        "status": "${dhlStatus.status.value}",
-         |        "description": "${dhlStatus.status.value}"
+         |        "description": "${dhlStatus.description.value}"
          |      },
          |      "details": {
          |        "product": {

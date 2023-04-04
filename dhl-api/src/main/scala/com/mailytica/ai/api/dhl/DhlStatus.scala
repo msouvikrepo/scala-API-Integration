@@ -17,7 +17,7 @@ case class DhlStatus(
 // static methode and variables
 object DhlStatus {
 
-  def parseJson(jsonString: String): DhlStatus = {
+  def parseJson(jsonString: String): Option[DhlStatus] = {
 
 
     // spray
@@ -42,10 +42,10 @@ object DhlStatus {
 
     // create dhl status from the attributes from the json string
 
-    DhlStatus(
+    Option[DhlStatus(
       StatusCode(statusCode),
       Description(description),
       Status(status)
-    )
+    )]
   }
 }
