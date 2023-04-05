@@ -12,7 +12,7 @@ case class Freshdesk(
 object Freshdesk{
 
   def parseJson(jsonString : String): Freshdesk = {
-    Freshdesk()
+    ???
   }
 
 }

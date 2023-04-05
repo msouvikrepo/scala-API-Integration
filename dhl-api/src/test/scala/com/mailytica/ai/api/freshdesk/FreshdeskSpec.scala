@@ -41,12 +41,12 @@ object FreshdeskSpec {
     val freshdeskJson =
       s"""
         |{
-        |  "body_text": ${freshdesk.bodyText.value},
-        |  "id": ${freshdesk.id.value},
+        |  "body_text": "${freshdesk.bodyText.value}",
+        |  "id": "${freshdesk.id.value}",
         |  "incoming": false,
         |  "private": false,
         |  "user_id": 101002862811,
-        |  "support_email": ${freshdesk.supportEmail.value.value},
+        |  "support_email": "${freshdesk.supportEmail.value.value}",
         |  "source": 0,
         |  "category": 1,
         |  "to_emails": [${freshdesk.toEmails.values.map(email => JsString(email.value)).mkString(",")}],
