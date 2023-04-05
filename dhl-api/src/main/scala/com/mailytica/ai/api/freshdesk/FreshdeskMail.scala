@@ -27,6 +27,9 @@ object FreshdeskMail {
     val freshdeskSupportEmail = FreshdeskEmail(freshdeskSupportEmailString)
     val JsArray(freshdeskToEmailsArray) = jsonValue.asJsObject.fields("to_emails")
 
+    //check for empty to_emails
+    if (freshdeskToEmailsArray.isEmpty) return None
+
     // create a Seq of FreshdeskEmail instances from the JsArray
     val freshdeskEmailSeq: Seq[FreshdeskEmail] = JsArray(freshdeskToEmailsArray).convertTo[Seq[String]].map(str => FreshdeskEmail(str))
 
