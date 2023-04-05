@@ -17,14 +17,22 @@ class FreshdeskSpec extends FlatSpec with Matchers with OptionValues {
     expectedFreshdeskMail shouldEqual Some(actualFreshdeskMail)
   }
 
-  it should "convert a json of an empty freshdeskmail to_emails response and return a none" in {
+  it should "convert a json of a freshdeskmail without to_emails response" in {
 
-    val (jsonInput, _) = FreshdeskSpec.defaultJsonFixture(None)
+    val freshdeskEmailWithoutToEmail = FreshdeskMail(
+      freshdeskBodyText = FreshdeskBodyText("Hi Lea Artner, Antwort1 auf Testticket"),
+      freshdeskId = FreshdeskId("101002738565".toInt),
+      freshdeskSupportEmail = FreshdeskSupportEmail(FreshdeskEmail("support@newaccount1636718700987.freshdesk.com")),
+      freshdeskToEmails = FreshdeskToEmails(Seq.empty)
+    )
+
+    val (jsonInput, _) = FreshdeskSpec.defaultJsonFixture(freshdeskEmailWithoutToEmail)
 
     val actualFreshdeskMail: Option[FreshdeskMail] = FreshdeskMail.parseJson(jsonInput.toString())
 
-    actualFreshdeskMail shouldEqual None
+    actualFreshdeskMail shouldEqual Some(freshdeskEmailWithoutToEmail)
   }
+
 }
 
 object FreshdeskSpec {
@@ -32,16 +40,14 @@ object FreshdeskSpec {
   def defaultJsonFixture(
                           freshdeskMail: FreshdeskMail =  FreshdeskMail(
                               freshdeskBodyText = FreshdeskBodyText("Hi Lea Artner, Antwort1 auf Testticket"),
-                              freshdeskId = FreshdeskId("101002738565".toInt),
+                              freshdeskId = FreshdeskId("101002738565".toLong),
                               freshdeskSupportEmail = FreshdeskSupportEmail(FreshdeskEmail("support@newaccount1636718700987.freshdesk.com")),
                               freshdeskToEmails = FreshdeskToEmails(Seq(FreshdeskEmail("lea.artner@gmx.de")))
                               )
                         ): (JsValue, FreshdeskMail) = {
 
 
-    val freshdeskToEmailsJson: String = freshdeskMail.map { freshdeskMail =>
-
-      s"""{
+    val freshdeskToEmailsJson: String = s"""{
          |  "body_text": "${freshdeskMail.freshdeskBodyText.value}",
          |  "id": ${freshdeskMail.freshdeskId.value},
          |  "incoming": false,
@@ -50,7 +56,7 @@ object FreshdeskSpec {
          |  "support_email": "${freshdeskMail.freshdeskSupportEmail.value.value}",
          |  "source": 0,
          |  "category": 1,
-         |  "to_emails": ${freshdeskMail.freshdeskToEmails.value.head.value},
+         |  "to_emails": "${freshdeskMail.freshdeskToEmails.value.head.value}",
          |  "from_email": "Mailytica <support@newaccount1636718700987.freshdesk.com>",
          |  "cc_emails": [
          |
@@ -75,15 +81,11 @@ object FreshdeskSpec {
          |  "ticket_id": 16,
          |  "source_additional_info": null
          |}""".stripMargin
-    }.get
 
     // @formatter:off
-    val jsonString = JsonParser(
-      s"""
-         """.stripMargin
-    )
+
     // @formatter:on
-    (jsonString, freshdeskMail)
+    (JsonParser(freshdeskToEmailsJson), freshdeskMail)
   }
 
 }

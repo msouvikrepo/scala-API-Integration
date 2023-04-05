@@ -13,7 +13,9 @@ object FreshdeskMailTest extends App {
                             |  "source": 0,
                             |  "category": 1,
                             |  "to_emails": [
-                            |    "lea.artner@gmx.de"
+                            |    "lea.artner@gmx.de",
+                            |    "lea1.artner@gmx.de",
+                            |    "lea2.artner@gmx.de"
                             |  ],
                             |  "from_email": "Mailytica <support@newaccount1636718700987.freshdesk.com>",
                             |  "cc_emails": [

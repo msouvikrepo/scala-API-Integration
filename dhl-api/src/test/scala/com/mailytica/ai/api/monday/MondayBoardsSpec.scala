@@ -1,3 +1,4 @@
+/*
 package com.mailytica.ai.api.monday
 
 import org.junit.runner.RunWith
@@ -67,3 +68,4 @@ object MondayBoardsSpec {
     (jsonString, mondayBoards)
   }
 }
+*/

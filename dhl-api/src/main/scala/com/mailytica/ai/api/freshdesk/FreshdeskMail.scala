@@ -25,6 +25,7 @@ object FreshdeskMail {
     val JsNumber(freshdeskId) = jsonValue.asJsObject.fields("id")
     val JsString(freshdeskSupportEmailString) = jsonValue.asJsObject.fields("support_email")
     val freshdeskSupportEmail = FreshdeskEmail(freshdeskSupportEmailString)
+
     val JsArray(freshdeskToEmailsArray) = jsonValue.asJsObject.fields("to_emails")
 
     //check for empty to_emails
@@ -35,7 +36,7 @@ object FreshdeskMail {
 
     Some(FreshdeskMail(
       FreshdeskBodyText(freshdeskBodyText),
-      FreshdeskId(freshdeskId.toInt),
+      FreshdeskId(freshdeskId.toLong),
       FreshdeskSupportEmail(freshdeskSupportEmail),
       FreshdeskToEmails(freshdeskEmailSeq)
     ))
