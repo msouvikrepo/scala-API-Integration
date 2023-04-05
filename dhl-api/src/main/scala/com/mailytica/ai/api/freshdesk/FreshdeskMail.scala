@@ -32,7 +32,7 @@ object FreshdeskMail {
 
     Some(FreshdeskMail(
       FreshdeskBodyText(freshdeskBodyText),
-      FreshdeskId(freshdeskId),
+      FreshdeskId(freshdeskId.toInt),
       FreshdeskSupportEmail(freshdeskSupportEmail),
       FreshdeskToEmails(freshdeskEmailSeq)
     ))

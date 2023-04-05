@@ -41,5 +41,6 @@ object FreshdeskMailTest extends App {
                             |}""".stripMargin
 
   println(FreshdeskMail.parseJson(jsonString))
+  print(FreshdeskMail.parseJson(""))
 
 }
