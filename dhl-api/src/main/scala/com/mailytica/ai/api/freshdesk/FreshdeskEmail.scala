@@ -1,3 +1,3 @@
-package com.mailytica.ai.api.dhl
+package com.mailytica.ai.api.freshdesk
 
 case class FreshdeskEmail(value : String)

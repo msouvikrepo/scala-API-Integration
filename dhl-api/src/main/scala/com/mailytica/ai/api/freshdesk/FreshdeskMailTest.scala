@@ -1,4 +1,4 @@
-package com.mailytica.ai.api.dhl
+package com.mailytica.ai.api.freshdesk
 
 object FreshdeskMailTest extends App {
 

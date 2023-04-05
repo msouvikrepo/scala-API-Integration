@@ -1,8 +1,7 @@
-package com.mailytica.ai.api.dhl
+package com.mailytica.ai.api.freshdesk
 
-import spray.json._
 import spray.json.DefaultJsonProtocol._
-import spray.json
+import spray.json._
 
 case class FreshdeskMail(
                           freshdeskBodyText: FreshdeskBodyText,
