@@ -28,11 +28,11 @@ object FreshdeskSpec {
     supportEmail = SupportEmail(???),
     toEmails = ToEmails(Seq())
   )
-                        ): Freshdesk = {
+                        ):(JsValue, Freshdesk) = {
 
-    Freshdesk(bodyText = BodyText(""),
+    (JsonParser(""), Freshdesk(bodyText = BodyText(""),
       id = Id(???),
       supportEmail = SupportEmail(???),
-      toEmails = ToEmails(Seq()))
+      toEmails = ToEmails(Seq())))
   }
 }
