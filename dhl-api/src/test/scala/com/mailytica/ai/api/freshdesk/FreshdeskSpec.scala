@@ -56,7 +56,7 @@ object FreshdeskSpec {
          |  "support_email": "${freshdeskMail.freshdeskSupportEmail.value.value}",
          |  "source": 0,
          |  "category": 1,
-         |  "to_emails": "${freshdeskMail.freshdeskToEmails.value.head.value}",
+         |  "to_emails": "${freshdeskMail.freshdeskToEmails.value}",
          |  "from_email": "Mailytica <support@newaccount1636718700987.freshdesk.com>",
          |  "cc_emails": [
          |
