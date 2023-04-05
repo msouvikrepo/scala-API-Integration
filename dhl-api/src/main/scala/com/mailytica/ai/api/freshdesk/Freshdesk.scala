@@ -1,6 +1,10 @@
 package com.mailytica.ai.api.freshdesk
 
 case class Freshdesk(
+                    bodyText: BodyText,
+                    id: Id,
+                    supportEmail: SupportEmail,
+                    toEmails: ToEmails
                     ){
 
 }

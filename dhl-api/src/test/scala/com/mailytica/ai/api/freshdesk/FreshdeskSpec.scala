@@ -8,23 +8,31 @@ import spray.json.{JsValue, JsonParser}
 @RunWith(classOf[JUnitRunner])
 class FreshdeskSpec extends FlatSpec with Matchers with OptionValues {
 
-  it should "convert a json of a freshdesk response to a freshdesk object" in{
+  it should "convert a json of a freshdesk response to a freshdesk object" in {
 
 
   }
 
-  it should "convert a json of an empty freshdesk to_email and return a None" in{
+  it should "convert a json of an empty freshdesk to_email and return a None" in {
 
 
   }
 
 }
 
-object FreshdeskSpec{
+object FreshdeskSpec {
 
-  def defaultJsonFixture(
+  def defaultJsonFixture(freshdesk: Freshdesk = Freshdesk(
+    bodyText = BodyText(""),
+    id = Id(???),
+    supportEmail = SupportEmail(???),
+    toEmails = ToEmails(Seq())
+  )
+                        ): Freshdesk = {
 
-                        ) : Freshdesk = {
-
-  Freshdesk()}
+    Freshdesk(bodyText = BodyText(""),
+      id = Id(???),
+      supportEmail = SupportEmail(???),
+      toEmails = ToEmails(Seq()))
+  }
 }
