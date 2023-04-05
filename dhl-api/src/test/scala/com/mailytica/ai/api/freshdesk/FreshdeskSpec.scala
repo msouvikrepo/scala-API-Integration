@@ -10,14 +10,8 @@ class FreshdeskSpec extends FlatSpec with Matchers with OptionValues {
 
   it should "convert a json of a freshdesk response to a freshdesk object" in {
     val (jsonInput, expectedFreshdesk) = FreshdeskSpec.defaultJsonFixture()
-    //val actualFreshdesk: Freshdesk = Freshdesk.parseJson(jsonInput.toString())
-    val freshdeskWithEmail = Freshdesk(
-      bodyText = BodyText("Hi Lea Artner, Antwort1 auf Testticket"),
-      id = Id(101002738565L),
-      supportEmail = SupportEmail(Email("support@newaccount1636718700987.freshdesk.com")),
-      toEmails = ToEmails(Seq(Email("lea.artner@gmx.de")))
-    )
-    expectedFreshdesk shouldEqual freshdeskWithEmail
+    val actualFreshdesk: Freshdesk = Freshdesk.parseJson(jsonInput.toString())
+    expectedFreshdesk shouldEqual actualFreshdesk
   }
 
   it should "convert a json of an empty freshdesk to_email and return a None" in {
@@ -28,13 +22,7 @@ class FreshdeskSpec extends FlatSpec with Matchers with OptionValues {
       toEmails = ToEmails(Seq.empty)
     )
     val (jsonInput, _) = FreshdeskSpec.defaultJsonFixture(freshdeskWithoutEmail)
-    //val actualFreshdesk = Freshdesk.parseJson(jsonInput.toString())
-    val actualFreshdesk = Freshdesk(
-      bodyText = BodyText("Hi Lea Artner, Antwort1 auf Testticket"),
-      id = Id(101002738565L),
-      supportEmail = SupportEmail(Email("support@newaccount1636718700987.freshdesk.com")),
-      toEmails = ToEmails(Seq.empty)
-    )
+    val actualFreshdesk = Freshdesk.parseJson(jsonInput.toString())
     actualFreshdesk shouldEqual freshdeskWithoutEmail
   }
 }
