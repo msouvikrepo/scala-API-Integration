@@ -24,19 +24,17 @@ object FreshdeskMail {
     val JsString(freshdeskBodyText) = jsonValue.asJsObject.fields("body_text")
     val JsString(freshdeskId) = jsonValue.asJsObject.fields("id")
     val JsString(freshdeskSupportEmailString) = jsonValue.asJsObject.fields("support_email")
-    val freshdeskSupportEmail = (FreshdeskSupportEmail)((FreshdeskEmail)freshdeskSupportEMailString))
+    val freshdeskSupportEmail = FreshdeskEmail(freshdeskSupportEmailString)
     val JsArray(freshdeskToEmailsArray) = jsonValue.asJsObject.fields("to_emails")
 
     // create a Seq of FreshdeskEmail instances from the JsArray
     val freshdeskEmailSeq: Seq[FreshdeskEmail] = JsArray(freshdeskToEmailsArray).convertTo[Seq[String]].map(str => FreshdeskEmail(str))
 
-    // create an instance of FreshdeskToEmails from the Seq of FreshdeskEmail instances and pray that the typecasting works
-    val freshdeskToEmails = FreshdeskToEmails(freshdeskEmailSeq)
-
     Some(FreshdeskMail(
       FreshdeskBodyText(freshdeskBodyText),
       FreshdeskId(freshdeskId),
-      FreshdeskSupportEmail(fres)
+      FreshdeskSupportEmail(freshdeskSupportEmail),
+      FreshdeskToEmails(freshdeskEmailSeq)
     ))
 
 
