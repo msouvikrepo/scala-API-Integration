@@ -3,7 +3,7 @@ package com.mailytica.ai.api.freshdesk
 import org.junit.runner.RunWith
 import org.scalatest._
 import org.scalatest.junit.JUnitRunner
-import spray.json.{JsValue, JsonParser, jsonReader}
+import spray.json.{JsString, JsValue, JsonParser, jsonReader}
 
 @RunWith(classOf[JUnitRunner])
 class FreshdeskSpec extends FlatSpec with Matchers with OptionValues {
@@ -18,13 +18,11 @@ class FreshdeskSpec extends FlatSpec with Matchers with OptionValues {
     val freshdeskWithoutEmail = Freshdesk(
       bodyText = BodyText("Hi Lea Artner, Antwort1 auf Testticket"),
       id = Id(101002738565L),
-      supportEmail =
-        SupportEmail(Email("support@newaccount1636718700987.freshdesk.com")),
+      supportEmail = SupportEmail(Email("support@newaccount1636718700987.freshdesk.com")),
       toEmails = ToEmails(Seq.empty)
     )
     val (jsonInput, _) = FreshdeskSpec.defaultJsonFixture(freshdeskWithoutEmail)
     val actualFreshdesk = Freshdesk.parseJson(jsonInput.toString())
-
     actualFreshdesk shouldEqual freshdeskWithoutEmail
   }
 
@@ -36,25 +34,22 @@ object FreshdeskSpec {
                           freshdesk: Freshdesk = Freshdesk(
                             bodyText = BodyText("Hi Lea Artner, Antwort1 auf Testticket"),
                             id = Id(101002738565L),
-                            supportEmail =
-                              SupportEmail(Email("support@newaccount1636718700987.freshdesk.com")),
+                            supportEmail = SupportEmail(Email("support@newaccount1636718700987.freshdesk.com")),
                             toEmails = ToEmails(Seq(Email("lea.artner@gmx.de")))
                           )
                         ): (JsValue, Freshdesk) = {
     val freshdeskJson =
-      """
+      s"""
         |{
-        |  "body_text": "Hi Lea Artner, Antwort1 auf Testticket",
-        |  "id": 101002738565,
+        |  "body_text": ${freshdesk.bodyText.value},
+        |  "id": ${freshdesk.id.value},
         |  "incoming": false,
         |  "private": false,
         |  "user_id": 101002862811,
-        |  "support_email": "support@newaccount1636718700987.freshdesk.com",
+        |  "support_email": ${freshdesk.supportEmail.value.value},
         |  "source": 0,
         |  "category": 1,
-        |  "to_emails": [
-        |    "lea.artner@gmx.de"
-        |  ],
+        |  "to_emails": [${freshdesk.toEmails.values.map(email => JsString(email.value)).mkString(",")}],
         |  "from_email": "Mailytica <support@newaccount1636718700987.freshdesk.com>",
         |  "cc_emails": [
         |  ],
