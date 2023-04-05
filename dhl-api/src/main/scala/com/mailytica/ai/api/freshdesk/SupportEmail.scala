@@ -1,3 +1,3 @@
 package com.mailytica.ai.api.freshdesk
 
-case class SupportEmail()
+case class SupportEmail(value : Email)
