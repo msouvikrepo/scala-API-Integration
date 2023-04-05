@@ -1,13 +1,14 @@
 package com.mailytica.ai.api.dhl
+
 import spray.json._
 import spray.json.DefaultJsonProtocol._
 import spray.json
 
 case class FreshdeskMail(
-                        freshdeskBodyText: FreshdeskBodyText,
-                        freshdeskId: FreshdeskId,
-                        freshdeskSupportEmail: FreshdeskSupportEmail,
-                        freshdeskToEmails: FreshdeskToEmails
+                          freshdeskBodyText: FreshdeskBodyText,
+                          freshdeskId: FreshdeskId,
+                          freshdeskSupportEmail: FreshdeskSupportEmail,
+                          freshdeskToEmails: FreshdeskToEmails
                         ) {
 
 }
@@ -22,7 +23,7 @@ object FreshdeskMail {
     val jsonValue: JsValue = jsonString.parseJson
 
     val JsString(freshdeskBodyText) = jsonValue.asJsObject.fields("body_text")
-    val JsString(freshdeskId) = jsonValue.asJsObject.fields("id")
+    val JsNumber(freshdeskId) = jsonValue.asJsObject.fields("id")
     val JsString(freshdeskSupportEmailString) = jsonValue.asJsObject.fields("support_email")
     val freshdeskSupportEmail = FreshdeskEmail(freshdeskSupportEmailString)
     val JsArray(freshdeskToEmailsArray) = jsonValue.asJsObject.fields("to_emails")
@@ -36,7 +37,6 @@ object FreshdeskMail {
       FreshdeskSupportEmail(freshdeskSupportEmail),
       FreshdeskToEmails(freshdeskEmailSeq)
     ))
-
 
 
   }
