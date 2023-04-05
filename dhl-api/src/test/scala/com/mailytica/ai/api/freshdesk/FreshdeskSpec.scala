@@ -30,17 +30,16 @@ class FreshdeskSpec extends FlatSpec with Matchers with OptionValues {
 object FreshdeskSpec {
 
   def defaultJsonFixture(
-                          freshdeskMail: Option[FreshdeskMail] = Some(
-                            FreshdeskMail(
+                          freshdeskMail: FreshdeskMail =  FreshdeskMail(
                               freshdeskBodyText = FreshdeskBodyText("Hi Lea Artner, Antwort1 auf Testticket"),
                               freshdeskId = FreshdeskId("101002738565".toInt),
                               freshdeskSupportEmail = FreshdeskSupportEmail(FreshdeskEmail("support@newaccount1636718700987.freshdesk.com")),
-                              freshdeskToEmails = FreshdeskToEmails([FreshdeskEmail("lea.artner@gmx.de")])
+                              freshdeskToEmails = FreshdeskToEmails(Seq(FreshdeskEmail("lea.artner@gmx.de")))
                               )
-                          )
-                        ): (JsValue, Option[FreshdeskMail]) = {
+                        ): (JsValue, FreshdeskMail) = {
 
-    val freshdeskJson: Option[String] = freshdeskMail.map { FreshdeskMail =>
+
+    val freshdeskToEmailsJson: String = freshdeskMail.map { freshdeskMail =>
 
       s"""{
          |  "body_text": "${freshdeskMail.freshdeskBodyText.value}",
@@ -51,9 +50,7 @@ object FreshdeskSpec {
          |  "support_email": "${freshdeskMail.freshdeskSupportEmail.value.value}",
          |  "source": 0,
          |  "category": 1,
-         |  "to_emails": [
-         |    "lea.artner@gmx.de"
-         |  ],
+         |  "to_emails": ${freshdeskMail.freshdeskToEmails.value.head.value},
          |  "from_email": "Mailytica <support@newaccount1636718700987.freshdesk.com>",
          |  "cc_emails": [
          |
@@ -78,35 +75,15 @@ object FreshdeskSpec {
          |  "ticket_id": 16,
          |  "source_additional_info": null
          |}""".stripMargin
-    }
+    }.get
 
     // @formatter:off
     val jsonString = JsonParser(
       s"""
-         |{
-         |  "shipments": [
-         |     ${shipmentJson.getOrElse("")}
-         |  ],
-         |  "possibleAdditionalShipmentsUrl": [
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=freight",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=dgf",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=ecommerce",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=parcel-nl",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=parcel-pl",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=express",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=post-de",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=sameday",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=parcel-uk",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=ecommerce-apac",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=ecommerce-europe",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=svb",
-         |    "/track/shipments?trackingNumber=470800204932&language=DE&service=post-international"
-         |  ]
-         |}
-         |""".stripMargin
+         """.stripMargin
     )
     // @formatter:on
-    (jsonString, dhlStatus)
+    (jsonString, freshdeskMail)
   }
 
 }
