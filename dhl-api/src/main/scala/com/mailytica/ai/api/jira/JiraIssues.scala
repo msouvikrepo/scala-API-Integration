@@ -8,13 +8,6 @@ object JiraIssues{
     ???
 
 
-    val issue : Issue = Issue(
-      Id(""),
-      Key(""),
-      Self(""),
-      ProjectId(""),
-      ProjectKey("")
-    )
     val issuesList = List(Issue(
       Id(""),
       Key(""),
