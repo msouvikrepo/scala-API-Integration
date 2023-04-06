@@ -23,7 +23,8 @@ class JiraSpec extends FlatSpec with Matchers with OptionValues {
 object JiraSpec{
 
   def defaultJsonFixture(
-                        jiraIssues: JiraIssues = JiraIssues(List[Issue(
+                        jiraIssues: JiraIssues = JiraIssues(
+                          List[Issue(
                           Id(""),
                           Key(""),
                           Self(""),

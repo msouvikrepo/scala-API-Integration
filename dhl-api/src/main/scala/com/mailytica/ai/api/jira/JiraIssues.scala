@@ -1,6 +1,6 @@
 package com.mailytica.ai.api.jira
 
-class JiraIssues {List[Issue]}
+case class JiraIssues (issues : List[Issue])
 
 object JiraIssues{
 
