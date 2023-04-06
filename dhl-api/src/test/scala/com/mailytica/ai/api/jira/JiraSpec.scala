@@ -90,7 +90,7 @@ object JiraSpec {
 
     //create the issues List
 
-    val issuesList:List[String] = jiraIssues.issues.map(jiraIssue())
+    val issuesList:List[String] = jiraIssues.issues.map(jiraIssue)
 
     val jiraJson = s"""{
                      |  "expand": "names,schema",
