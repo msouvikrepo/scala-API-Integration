@@ -70,8 +70,43 @@ object JiraSpec {
                           )
                         ): (JsValue, JiraIssues) = {
 
-    ???
 
+    val jiraJson = s"""{
+                     |  "expand": "names,schema",
+                     |  "startAt": 0,
+                     |  "maxResults": 50,
+                     |  "total": 1,
+                     |  "issues": [
+                     |    {
+                     |      "expand": "operations,versionedRepresentations,editmeta,changelog,customfield_10010.requestTypePractice,renderedFields",
+                     |      "id": "${jiraIssues.issues.head.id.value}",
+                     |      "self": "${jiraIssues.issues.head.self.value}",
+                     |      "key": "${jiraIssues.issues.head.key.value}",
+                     |      "fields": {
+                     |        "customfield_10031": null,
+                     |        "project": {
+                     |          "self": "https://anna-dev.atlassian.net/rest/api/latest/project/10000",
+                     |          "id": "${jiraIssues.issues.head.projectId.value}",
+                     |          "key": "${jiraIssues.issues.head.projectKey.value}"
+                     |        }
+                     |      }
+                     |    },
+                     |    {
+                     |      "expand": "operations,versionedRepresentations,editmeta,changelog,customfield_10010.requestTypePractice,renderedFields",
+                     |      "id": "${jiraIssues.issues.tail.head.id.value}",
+                     |      "self": "${jiraIssues.issues.tail.head.self.value}",
+                     |      "key": "${jiraIssues.issues.tail.head.key.value}",
+                     |      "fields": {
+                     |        "customfield_10031": null,
+                     |        "project": {
+                     |          "self": "https://anna-dev.atlassian.net/rest/api/latest/project/10000",
+                     |          "id": "${jiraIssues.issues.tail.head.projectId.value}",
+                     |          "key": "${jiraIssues.issues.tail.head.projectKey.value}"
+                     |        }
+                     |      }
+                     |    }
+                     |  ]
+                     |}""".stripMargin
 
 
   }
