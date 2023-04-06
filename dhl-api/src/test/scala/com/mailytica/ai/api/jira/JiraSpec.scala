@@ -49,7 +49,6 @@ class JiraSpec extends FlatSpec with Matchers with OptionValues {
     expectedJiraIssues shouldEqual actualJiraIssues
 
   }
-
 }
 
 object JiraSpec {
@@ -88,8 +87,6 @@ object JiraSpec {
                           )
                         ): (JsValue, JiraIssues) = {
 
-    //create the issues List
-
     val issuesList:List[String] = jiraIssues.issues.map(jiraIssue)
 
     val jiraJson = s"""{
@@ -97,7 +94,7 @@ object JiraSpec {
                      |  "startAt": 0,
                      |  "maxResults": 50,
                      |  "total": 1,
-                     |  "issues": [${issuesList}]
+                     |  "issues": [${issuesList.mkString(",")}]
                      |}""".stripMargin
 
     (JsonParser(jiraJson), jiraIssues)
