@@ -94,7 +94,7 @@ object JiraSpec {
                      |  "startAt": 0,
                      |  "maxResults": 50,
                      |  "total": 1,
-                     |  "issues": ${issuesList.mkString(",")}
+                     |  "issues": [${issuesList.mkString(",")}]
                      |}""".stripMargin
 
     (JsonParser(jiraJson), jiraIssues)
