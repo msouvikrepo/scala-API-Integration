@@ -27,7 +27,27 @@ class JiraSpec extends FlatSpec with Matchers with OptionValues {
     )
 
   }
-  it should "convert a json of a jira response with an issue array with two elements" in {}
+  it should "convert a json of a jira response with an issue array with two elements" in {
+
+    val issuesListWithTwoElement: JiraIssues = JiraIssues(
+      List(
+        Issue(
+          Id("1234"),
+          Key("2"),
+          Self("https://anna-dev.atlassian.net/rest/api/latest/issue/10012"),
+          ProjectId("10000"),
+          ProjectKey("ML")
+        ),
+        Issue(
+          Id("1235"),
+          Key("5"),
+          Self("https://anna-dev.atlassian.net/rest/api/latest/issue/10012"),
+          ProjectId("10000"),
+          ProjectKey("ML")
+        )
+      )
+    )
+  }
 
 }
 
@@ -40,7 +60,7 @@ object JiraSpec {
                                 Id("1234"),
                                 Key("2"),
                                 Self(
-                                  "https://anna-dev.atlassian.net/rest/api/latest/issue/10012%22"
+                                  "https://anna-dev.atlassian.net/rest/api/latest/issue/10012"
                                 ),
                                 ProjectId("10000"),
                                 ProjectKey("ML")
