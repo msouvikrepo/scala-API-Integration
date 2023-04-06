@@ -24,14 +24,14 @@ object JiraSpec{
 
   def defaultJsonFixture(
                         jiraIssues: JiraIssues = JiraIssues(
-                          List[Issue(
+                          List(Issue(
                           Id(""),
                           Key(""),
                           Self(""),
                           ProjectId(""),
                           ProjectKey("")
-                        )])
-                        ): (JsValue, JiraIssues) = {
+                        ))
+                        )): (JsValue, JiraIssues) = {
 
     ???
 
