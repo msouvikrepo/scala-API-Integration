@@ -11,25 +11,22 @@ class JiraSpec extends FlatSpec with Matchers with OptionValues {
   it should "convert a json of a jira response with an issue array without elements and return None" in {
 
     val issuesListWithoutElements: JiraIssues = JiraIssues(List.empty)
+    val(jsonInput, _) =JiraSpec.defaultJsonFixture(issuesListWithoutElements)
+    val actualJiraIssues = JiraIssues.parseJson(jsonInput.toString())
+
+    actualJiraIssues shouldEqual issuesListWithoutElements
+
   }
   it should "convert a json of a jira response with an issue array with one element" in {
 
-    val issuesListWithOneElement: JiraIssues = JiraIssues(
-      List(
-        Issue(
-          Id("1234"),
-          Key("2"),
-          Self("https://anna-dev.atlassian.net/rest/api/latest/issue/10012%22"),
-          ProjectId("10000"),
-          ProjectKey("ML")
-        )
-      )
-    )
+    val (jsonInput, expectedJiraIssues) = JiraSpec.defaultJsonFixture()
+    val actualJiraIssues = JiraIssues.parseJson(jsonInput.toString())
+    expectedJiraIssues shouldEqual actualJiraIssues
 
   }
   it should "convert a json of a jira response with an issue array with two elements" in {
 
-    val issuesListWithTwoElement: JiraIssues = JiraIssues(
+    val issuesListWithTwoElements: JiraIssues = JiraIssues(
       List(
         Issue(
           Id("1234"),
@@ -47,6 +44,10 @@ class JiraSpec extends FlatSpec with Matchers with OptionValues {
         )
       )
     )
+    val (jsonInput, expectedJiraIssues) = JiraSpec.defaultJsonFixture(issuesListWithTwoElements)
+    val actualJiraIssues = JiraIssues.parseJson(jsonInput.toString())
+    expectedJiraIssues shouldEqual actualJiraIssues
+
   }
 
 }
@@ -70,6 +71,8 @@ object JiraSpec {
                         ): (JsValue, JiraIssues) = {
 
     ???
+
+
 
   }
 }
