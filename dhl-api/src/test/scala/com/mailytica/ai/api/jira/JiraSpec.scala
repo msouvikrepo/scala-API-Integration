@@ -58,7 +58,7 @@ object JiraSpec {
   def jiraIssue(issue: Issue): String = {
 
     val issueJson: String = s"""{
-                              |      "expand": "${issue.expand.values.mkString("")}",
+                              |      "expand": "${issue.expand.values.mkString(",")}",
                               |      "id": "${issue.id.value}",
                               |      "self": "${issue.self.value}",
                               |      "key": "${issue.key.value}",
