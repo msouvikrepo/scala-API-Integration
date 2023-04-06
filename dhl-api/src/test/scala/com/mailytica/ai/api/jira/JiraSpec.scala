@@ -54,6 +54,24 @@ class JiraSpec extends FlatSpec with Matchers with OptionValues {
 
 object JiraSpec {
 
+  def jiraIssue(issue: Issue): String = {
+
+    val issueJson: String = s"""{
+                              |      "expand": "operations,versionedRepresentations,editmeta,changelog,customfield_10010.requestTypePractice,renderedFields",
+                              |      "id": "${issue.id.value}",
+                              |      "self": "${issue.self.value}",
+                              |      "key": "${issue.key.value}",
+                              |      "fields": {
+                              |        "customfield_10031": null,
+                              |        "project": {
+                              |          "self": "https://anna-dev.atlassian.net/rest/api/latest/project/10000",
+                              |          "id": "${issue.projectId.value}",
+                              |          "key": "${issue.projectKey.value}"
+                              |        }
+                              |      }
+                              |    }""".stripMargin
+      issueJson
+  }
   def defaultJsonFixture(
                           jiraIssues: JiraIssues = JiraIssues(
                             List(
@@ -71,6 +89,7 @@ object JiraSpec {
                         ): (JsValue, JiraIssues) = {
 
 
+    val issuesList = List()
     val jiraJson = s"""{
                      |  "expand": "names,schema",
                      |  "startAt": 0,
