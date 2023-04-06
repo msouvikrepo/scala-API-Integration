@@ -5,4 +5,5 @@ case class Issue(
                   key : Key,
                   self : Self,
                   projectId: ProjectId,
-                  projectKey: ProjectKey)
+                  projectKey: ProjectKey,
+                  expand: Expand)

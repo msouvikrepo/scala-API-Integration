@@ -33,14 +33,16 @@ class JiraSpec extends FlatSpec with Matchers with OptionValues {
           Key("2"),
           Self("https://anna-dev.atlassian.net/rest/api/latest/issue/10012"),
           ProjectId("10000"),
-          ProjectKey("ML")
+          ProjectKey("ML"),
+          Expand(Seq("operations","versionedRepresentations","editmeta","changelog","customfield_10010.requestTypePractice","renderedFields"))
         ),
         Issue(
           Id("1235"),
           Key("5"),
           Self("https://anna-dev.atlassian.net/rest/api/latest/issue/10012"),
           ProjectId("10000"),
-          ProjectKey("ML")
+          ProjectKey("ML"),
+          Expand(Seq("operations","versionedRepresentations","editmeta","changelog","customfield_10010.requestTypePractice","renderedFields"))
         )
       )
     )
@@ -56,7 +58,7 @@ object JiraSpec {
   def jiraIssue(issue: Issue): String = {
 
     val issueJson: String = s"""{
-                              |      "expand": "operations,versionedRepresentations,editmeta,changelog,customfield_10010.requestTypePractice,renderedFields",
+                              |      "expand": "${issue.expand.values.mkString("")}",
                               |      "id": "${issue.id.value}",
                               |      "self": "${issue.self.value}",
                               |      "key": "${issue.key.value}",
@@ -77,11 +79,10 @@ object JiraSpec {
                               Issue(
                                 Id("1234"),
                                 Key("2"),
-                                Self(
-                                  "https://anna-dev.atlassian.net/rest/api/latest/issue/10012"
-                                ),
+                                Self("https://anna-dev.atlassian.net/rest/api/latest/issue/10012"),
                                 ProjectId("10000"),
-                                ProjectKey("ML")
+                                ProjectKey("ML"),
+                                Expand(Seq("operations","versionedRepresentations","editmeta","changelog","customfield_10010.requestTypePractice","renderedFields"))
                               )
                             )
                           )

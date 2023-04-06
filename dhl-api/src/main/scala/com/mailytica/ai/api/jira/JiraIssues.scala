@@ -7,6 +7,8 @@ object JiraIssues{
 
   def parseIssueObjectFromIssueElement(issueJsonString : JsValue): Issue = {
 
+    val JsString(expandString) = issueJsonString.asJsObject.fields("expand")
+    val expandSeq = expandString.split(",").toSeq
     val JsString(id) = issueJsonString.asJsObject.fields("id")
     val JsString(key) = issueJsonString.asJsObject.fields("key")
     val JsString(self) = issueJsonString.asJsObject.fields("self")
@@ -17,7 +19,8 @@ object JiraIssues{
       Key(key),
       Self(self),
       ProjectId(projectId),
-      ProjectKey(projectKey)
+      ProjectKey(projectKey),
+      Expand(expandSeq)
     )
   }
   def parseJson(jsonString : String): JiraIssues = {
