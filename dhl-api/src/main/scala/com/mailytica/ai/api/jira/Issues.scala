@@ -1,3 +1,8 @@
 package com.mailytica.ai.api.jira
 
-case class Issues(values :  List[])
+case class Issue(
+                  id : Id,
+                  key : Key,
+                  self : Self,
+                  projectId: ProjectId,
+                  projectKey: ProjectKey)
