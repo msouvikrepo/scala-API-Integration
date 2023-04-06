@@ -70,7 +70,7 @@ object JiraSpec {
                               |        }
                               |      }
                               |    }""".stripMargin
-      issueJson
+    issueJson
   }
   def defaultJsonFixture(
                           jiraIssues: JiraIssues = JiraIssues(
@@ -88,8 +88,10 @@ object JiraSpec {
                           )
                         ): (JsValue, JiraIssues) = {
 
+    //create the issues List
 
-    val issuesList = List()
+    val issuesList:List[String] = jiraIssues.issues.map(jiraIssue())
+
     val jiraJson = s"""{
                      |  "expand": "names,schema",
                      |  "startAt": 0,
