@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 import spray.json.{JsValue, JsonParser}
 
 @RunWith(classOf[JUnitRunner])
-class DhlStatusSpec extends  FlatSpec with Matchers with OptionValues {
+class DhlStatusSpec extends FlatSpec with Matchers with OptionValues {
 
   it should "convert a json of a dhl response into DhlStatus" in {
 
@@ -31,7 +31,7 @@ object DhlStatusSpec {
 
   def defaultJsonFixture(
                           dhlStatus: Option[DhlStatus] = Some(
-                              DhlStatus(
+                            DhlStatus(
                               statusCode = StatusCode("delivered"),
                               description = Description("Die Sendung wurde zugestellt."),
                               status = Status("Die Sendung wurde zugestellt."),

@@ -2,7 +2,6 @@ package com.mailytica.ai.api.dhl
 
 import spray.json._
 
-
 case class DhlStatus(
                       statusCode: StatusCode,
                       description: Description,
@@ -20,6 +19,10 @@ case class DhlStatus(
 // static methode and variables
 object DhlStatus {
 
+  def dhlHttpGetRequest(): Int = {
+    0
+  }
+
   def parseJson(jsonString: String): Option[DhlStatus] = {
 
 
@@ -31,7 +34,7 @@ object DhlStatus {
 
     // TODO learn read a bit about Scala option and .map function of options
 
-    shipmentOption.map {shipment =>
+    shipmentOption.map{shipment =>
 
     val JsObject(statusObject) = shipment.asJsObject.fields("status")
     val JsString(trackingCode) = shipment.asJsObject.fields("id")
