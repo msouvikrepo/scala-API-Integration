@@ -11,9 +11,7 @@ case class DhlStatus(
                       serviceUrl: ServiceUrl
                     ) {
 
-  def doingSomething(value: Int): String = {
-    "produced a string"
-  }
+
 }
 
 // static methode and variables
@@ -32,7 +30,6 @@ object DhlStatus {
 
     val shipmentOption: Option[JsValue] = shipmentsJson.headOption // Some(shipment), None
 
-    // TODO learn read a bit about Scala option and .map function of options
 
     shipmentOption.map{shipment =>
 

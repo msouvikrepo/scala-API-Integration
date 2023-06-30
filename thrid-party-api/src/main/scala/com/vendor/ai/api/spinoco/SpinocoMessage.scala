@@ -23,7 +23,7 @@ object SpinocoMessage {
     val JsArray(destinationToAccountArray) = spinocoMessageJsValue.asJsObject.fields("destination").asJsObject.fields("To")
     val JsString(destinationToAccountEmail) = destinationToAccountArray.head.asJsObject.fields("source").asJsObject.fields("account")
 
-    val hashtagsSeq: Seq[String] = hashTagsArray.map{case JsString(hashtag) => hashtag.toString}
+    val hashtagsSeq: Seq[String] = hashTagsArray.map{case JsString(hashtag) => hashtag}
 
     /*implicit val hashtagFormat = jsonFormat1(Hashtags)
     val hashtagsSeq = hashTagsArray.convertTo(Hashtags)*/

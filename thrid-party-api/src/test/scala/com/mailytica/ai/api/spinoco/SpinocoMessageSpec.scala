@@ -22,7 +22,7 @@ class SpinocoMessageSpec extends FlatSpec with Matchers with OptionValues {
       subject = Subject("Test"),
       hashtags = Hashtags(Seq.empty),
       fromSourceEmail = FromSourceEmail(Email("tse@spinoco.com")),
-      emailMessageBody = EmailMessageBody("Test\\r\\n"),
+      emailMessageBody = EmailMessageBody("Test"),
       destinationToAccount = DestinationToAccount(Email("spinoco@mailytica.com")))
 
     val (jsonInput, expectedSpinocoMessage) = SpinocoMessageSpec.defaultJsonFixture(spinocoMessageWithNoHashtags)
@@ -41,14 +41,14 @@ object SpinocoMessageSpec {
                           subject = Subject("Test"),
                           hashtags =  Hashtags(Seq("test1", "test2")),
                           fromSourceEmail = FromSourceEmail(Email("tse@spinoco.com")),
-                          emailMessageBody = EmailMessageBody("Test\\r\\n"),
+                          emailMessageBody = EmailMessageBody("Test"),
                           destinationToAccount = DestinationToAccount(Email("spinoco@mailytica.com")))
   ):
   (JsValue, SpinocoMessage) = {
 
     val spinocoMessageJson =s"""{
                               |  "subject": "${spinocoMessage.subject.value}",
-                              |  "hashTags": ["${spinocoMessage.hashtags.values.mkString(",")}"],
+                              |  "hashTags": ["${spinocoMessage.hashtags.values.mkString(",").toSeq}"],
                               |  "mailId": "52f7f5f5-f15c-11ec-a548-cd00e3461c72",
                               |  "from": {
                               |    "__tpe": "ContactEndPoint",
