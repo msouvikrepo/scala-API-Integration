@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.mailytica.ai</groupId>
-    <artifactId>mailytica-api</artifactId>
+    <groupId>com.xyz.ai</groupId>
+    <artifactId>xyz-api</artifactId>
     <version>1.0.1</version>
     <packaging>pom</packaging>
 
@@ -253,46 +253,23 @@
 
     </properties>
 
-    <!--
-    <distributionManagement>
-        <snapshotRepository>
-            <id>artifact-registry</id>
-            <url>https://europe-west3-maven.pkg.dev/mailytica-dev/maven-mailytica</url>
-        </snapshotRepository>
-        <repository>
-            <id>artifact-registry</id>
-            <url>https://europe-west3-maven.pkg.dev/mailytica-dev/maven-mailytica</url>
-        </repository>
-    </distributionManagement>
-    <repositories>
-        <repository>
-            <id>artifact-registry</id>
-            <url>https://europe-west3-maven.pkg.dev/mailytica-dev/maven-mailytica</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    -->
+
 
     <distributionManagement>
         <snapshotRepository>
             <id>artifact-registry</id>
-            <url>https://europe-west3-maven.pkg.dev/mailytica-dev/maven-mailytica</url>
+            <url>https://europe-west3-maven.pkg.dev/xyz-dev/maven-xyz</url>
         </snapshotRepository>
         <repository>
             <id>artifact-registry</id>
-            <url>https://europe-west3-maven.pkg.dev/mailytica-dev/maven-mailytica</url>
+            <url>https://europe-west3-maven.pkg.dev/xyz-dev/maven-xyz</url>
         </repository>
     </distributionManagement>
 
     <repositories>
         <repository>
             <id>artifact-registry</id>
-            <url>https://europe-west3-maven.pkg.dev/mailytica-dev/maven-mailytica</url>
+            <url>https://europe-west3-maven.pkg.dev/xyz-dev/maven-xyz</url>
             <releases>
                 <enabled>true</enabled>
             </releases>

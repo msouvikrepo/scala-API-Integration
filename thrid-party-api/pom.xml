@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.mailytica.ai</groupId>
-        <artifactId>mailytica-api</artifactId>
+        <groupId>com.xyz.ai</groupId>
+        <artifactId>xyz-api</artifactId>
         <version>1.0.1</version>
     </parent>
 
-    <artifactId>dhl-api</artifactId>
+    <artifactId>vendor-api</artifactId>
 
     <dependencies>
 
