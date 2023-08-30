@@ -1,4 +1,4 @@
-## Consuming APIs from different sources, creating classes and checking for JSON structural integrity
+## Consuming APIs from different sources, data modelling and testing JSON structural integrity
 
 # API sources
 
