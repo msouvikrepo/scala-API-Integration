@@ -41,9 +41,6 @@ object DhlStatus {
     val JsString(statusCode) = statusObject("statusCode")
     val JsString(status) = statusObject("status")
     val JsString(description) = statusObject("description")
-    println(statusCode)
-    println(status)
-    println(description)
 
     // create dhl status from the attributes from the json string
     DhlStatus(
