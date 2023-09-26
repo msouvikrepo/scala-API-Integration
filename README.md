@@ -1,4 +1,4 @@
-## Consuming APIs from various vendors, data modelling and testing JSON structural integrity
+## Data Modelling and testing common APIs
 
 # API sources
 
